@@ -1,0 +1,8 @@
+{
+	"db_creds": [{
+		"PGHOST": "corteva.cimnoj12fnai.us-east-1.rds.amazonaws.com",
+		"PGDATABASE": "postgres",
+		"PGUSER": "postgres",
+		"PGPASSWORD": "password"
+	}]
+}

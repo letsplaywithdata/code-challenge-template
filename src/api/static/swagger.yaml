@@ -1,0 +1,116 @@
+openapi: "3.0.0"
+info:
+  title: Weather API
+  version: "1.0.0"
+servers:
+  - url: "http://localhost:8081"
+paths:
+  /api/weather:
+    get:
+      summary: Retrieve weather data
+      description: Returns a JSON-formatted response with a representation of the ingested/calculated data in your database. Allows clients to filter the response by date and station ID (where present) using the query string. Data is paginated.
+      parameters:
+        - name: station_id
+          in: query
+          description: Filter weather data by station ID.
+          example: USC00110072
+          required: false
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: Filter weather data by date in format YYYY-MM-DD.
+          required: false
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: Index of the first record to retrieve for pagination.
+          required: false
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: Maximum number of records to retrieve per page.
+          required: false
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    station_id:
+                      type: string
+                    date:
+                      type: string
+                      format: date-time
+                    max_temp:
+                      type: number
+                    min_temp:
+                      type: number
+                    precipitation:
+                      type: number
+
+        404:
+          description: Failed to Load Api
+
+
+  /api/weather/stats:
+    get:
+      summary: Retrieve weather data statistics
+      description: Returns a JSON-formatted response with weather data statistics. Allows clients to filter the response by station ID and year using the query string. Data is paginated.
+      parameters:
+        - name: station_id
+          in: query
+          description: Filter weather data by station ID.
+          example: USC00110072
+          required: false
+          schema:
+            type: string
+        - name: year
+          in: query
+          description: Filter weather data statistics by year.
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          description: Index of the first record to retrieve for pagination.
+          required: false
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: Maximum number of records to retrieve per page.
+          required: false
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    station_id:
+                      type: string
+                    year:
+                      type: integer
+                    avg_min_temp:
+                      type: float
+                    avg_max_temp:
+                      type: float
+                    avg_precipitation:
+                      type: float
+
+        404:
+          description: Failed to Load Api

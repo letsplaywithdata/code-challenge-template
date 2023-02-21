@@ -1,0 +1,7 @@
+Flask==2.2.2
+pytest==7.1.2
+numpy==1.23.5
+psycopg2==2.9.3
+SQLAlchemy==1.4.39
+pandas==1.4.4
+tqdm==4.64.0
