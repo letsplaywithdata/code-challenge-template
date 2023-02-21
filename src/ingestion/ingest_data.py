@@ -4,7 +4,7 @@ from tqdm import tqdm
 
 def upload_data(class_Name, data: pd.DataFrame, session: Session):
     """
-    Uploads weather data to the database using bulk insert for faster performance.
+    Uploads data to the database using bulk insert for faster performance.
     """
     # Convert dataframe to list of dictionaries
     data_dict = data.to_dict('records')
